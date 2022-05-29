@@ -1,8 +1,8 @@
 const Patient = () => {
   return (
-    <div className="bg-white m-3 px-5 py-10 shadow-md rounded-xl">
+    <div className="bg-white my-3 mx-5 px-5 py-10 shadow-md rounded-xl">
       <p className="font-bold mb-3 text-gray-700 uppercase">
-        Nombre: {''}
+        Name: {''}
         <span className="font-normal normal-case">David</span>
       </p>
       <p className="font-bold mb-3 text-gray-700 uppercase">
