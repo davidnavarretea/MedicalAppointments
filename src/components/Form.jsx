@@ -5,13 +5,15 @@ const [name, setName] = useState('')
 const [email, setEmail] = useState('')
 const [discharge, setDischarge] = useState('')
 const [symptoms, setSymptoms] = useState('')
+const [error, setError] = useState(false)
 // Functions
 const handleSubmit = e => {
   e.preventDefault()
   if([name, email, discharge, symptoms].includes('')){
-    console.log('Fill in all fields')
+    setError(true)
+    return
   } else {
-    console.log('Sent')
+    setError(false)
   }
 }
 
@@ -23,6 +25,10 @@ const handleSubmit = e => {
       <span className="text-indigo-600 font-bold">Manage them</span>
     </p>
     <form className="bg-white shadow-md rounded-lg py-10 px-5 mb-10" onSubmit={handleSubmit}>
+      {error && 
+        <div className="bg-red-800 text-center text-white uppercase font-bold mb-5 p-3 rounded">
+          <p>Fill in all fields</p>
+        </div>}
       <div className="mb-2">
         <label htmlFor="patientname" className="block text-gray-700 uppercase font-bold ml-2 pl-2">Patient's Name</label>
         <input
@@ -68,7 +74,7 @@ const handleSubmit = e => {
       </div>
       <input
         type="submit"
-        className="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-colors"
+        className="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-colors rounded"
         value="Add"
       />
     </form>
