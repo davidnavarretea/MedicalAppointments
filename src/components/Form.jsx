@@ -1,5 +1,5 @@
 import { useState } from "react"
-const Form = () => {
+const Form = ({patients}) => {
 // States
 const [name, setName] = useState('')
 const [email, setEmail] = useState('')
