@@ -1,5 +1,5 @@
 import Patient from "./Patient"
-const PatientList = () => {
+const PatientList = ({patients}) => {
   return (
     <div className="md:w-1/2 lg:w-3/5 md:h-screen md:overflow-y-scroll">
     <h2 className="font-black text-3xl text-center">Patient {''} <span className="text-blue-600">List</span></h2>
