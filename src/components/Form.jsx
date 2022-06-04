@@ -7,6 +7,7 @@ const [discharge, setDischarge] = useState('')
 const [symptoms, setSymptoms] = useState('')
 const [error, setError] = useState(false)
 // Functions
+// Error Window
 const handleSubmit = e => {
   e.preventDefault()
   if([name, email, discharge, symptoms].includes('')){
@@ -16,19 +17,22 @@ const handleSubmit = e => {
     setError(false)
   }
 }
-
+// Page
   return (
     <div className="md:w-1/2 lg:w-2/5 mx-5">
-    <h1 className="font-black text-3xl text-center">Patients Follow-up</h1>
-    <p className="text-lg mt-5 text-center mb-10">
+    <h1 className="font-black text-3xl text-center">Patients {''}
+    <span className="text-blue-600">Follow-up</span></h1>
+    <p className="text-lg mt-5 text-center mb-10 font-bold">
       Add patients and {''}
-      <span className="text-indigo-600 font-bold">Manage them</span>
+      <span className="text-blue-600 font-bold">Manage them</span>
     </p>
     <form className="bg-white shadow-md rounded-lg py-10 px-5 mb-10" onSubmit={handleSubmit}>
+      {/* If error exist, error div appears */}
       {error && 
         <div className="bg-red-800 text-center text-white uppercase font-bold mb-5 p-3 rounded">
           <p>Fill in all fields</p>
         </div>}
+      {/* Form */}
       <div className="mb-2">
         <label htmlFor="patientname" className="block text-gray-700 uppercase font-bold ml-2 pl-2">Patient's Name</label>
         <input
@@ -74,7 +78,7 @@ const handleSubmit = e => {
       </div>
       <input
         type="submit"
-        className="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-colors rounded"
+        className="bg-blue-600 w-full p-3 text-white uppercase font-bold hover:bg-blue-700 cursor-pointer transition-colors rounded"
         value="Add"
       />
     </form>
