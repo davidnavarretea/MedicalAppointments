@@ -1,5 +1,5 @@
 import { useState } from "react"
-const Form = ({patients}) => {
+const Form = ({patients, setPatients}) => {
 // States
 const [name, setName] = useState('')
 const [email, setEmail] = useState('')
@@ -13,9 +13,30 @@ const handleSubmit = e => {
   if([name, email, discharge, symptoms].includes('')){
     setError(true)
     return
-  } else {
-    setError(false)
   }
+  setError(false)
+  // Generate Id Patient
+  const generateId = () => {
+    const date = Date.now()
+    const random = Math.random() * 9
+    const id = Math.round(date - random)
+    return id
+  }
+  /* Create Patient Object */
+  const patientObject = {
+    name,
+    email,
+    discharge,
+    symptoms,
+    id: generateId()
+  }
+  /* Add patient */
+  setPatients([...patients, patientObject])
+  /* Reset form */
+  setName('')
+  setEmail('')
+  setDischarge('')
+  setSymptoms('')
 }
 // Page
   return (
