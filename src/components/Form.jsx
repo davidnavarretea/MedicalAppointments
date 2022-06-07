@@ -1,13 +1,22 @@
-import { useState } from "react"
-const Form = ({patients, setPatients}) => {
+import { useState, useEffect } from "react"
+const Form = ({patients, setPatients, patient, setPatient}) => {
 // States
 const [name, setName] = useState('')
 const [email, setEmail] = useState('')
 const [discharge, setDischarge] = useState('')
 const [symptoms, setSymptoms] = useState('')
 const [error, setError] = useState(false)
+// Effects
+useEffect(() => {
+  if(Object.values(patient).length > 0){
+    setName(patient.name)
+    setEmail(patient.email)
+    setDischarge(patient.discharge)
+    setSymptoms(patient.symptoms)
+  }
+},[patient])
 // Functions
-// Error Window
+// Validation
 const handleSubmit = e => {
   e.preventDefault()
   if([name, email, discharge, symptoms].includes('')){
@@ -27,11 +36,24 @@ const handleSubmit = e => {
     name,
     email,
     discharge,
-    symptoms,
-    id: generateId()
+    symptoms
   }
-  /* Add patient */
-  setPatients([...patients, patientObject])
+  /* Edit or Create - Validation */
+  /* Modify patient */
+  if(patient.id){
+    /* Add id */
+    patientObject.id = patient.id
+    /* Set patiens */
+    const patientUpdated = patients.map(patientState => patientObject.id === patientState.id ? patientObject : patientState)
+    setPatients(patientUpdated)
+    /* Clean Patient State */
+    setPatient({})
+  } else {
+    /* Add id */
+    patientObject.id = generateId()
+    /* Set patients */
+    setPatients([...patients, patientObject])
+  }
   /* Reset form */
   setName('')
   setEmail('')
@@ -100,7 +122,7 @@ const handleSubmit = e => {
       <input
         type="submit"
         className="bg-blue-600 w-full p-3 text-white uppercase font-bold hover:bg-blue-700 cursor-pointer transition-colors rounded"
-        value="Add"
+        value={patient.id ? 'Update' : 'Add'}
       />
     </form>
     </div>
