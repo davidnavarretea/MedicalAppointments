@@ -1,4 +1,4 @@
-const Patient = ({patient, setPatient}) => {
+const Patient = ({patient, setPatient, deletePatient}) => {
   return (
     <div className="bg-white my-3 mx-5 px-5 py-10 shadow-md rounded-xl">
       <p className="font-bold mx-2 mb-3 text-gray-700 uppercase">
@@ -19,7 +19,7 @@ const Patient = ({patient, setPatient}) => {
       </p>
       <div className="flex mt-4">
         <button onClick={() => setPatient(patient)} type="button" className="bg-blue-600 w-full p-2 mx-1 text-white uppercase font-bold hover:bg-blue-700 cursor-pointer transition-colors rounded">Edit</button>
-        <button type="button" className="bg-red-600 w-full p-2 mx-1 text-white uppercase font-bold hover:bg-red-700 cursor-pointer transition-colors rounded">Delete</button>
+        <button onClick={() => deletePatient(patient.id)} type="button" className="bg-red-600 w-full p-2 mx-1 text-white uppercase font-bold hover:bg-red-700 cursor-pointer transition-colors rounded">Delete</button>
       </div>
     </div>
   )
