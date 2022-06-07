@@ -1,5 +1,5 @@
 import Patient from "./Patient"
-const PatientList = ({patients}) => {
+const PatientList = ({patients, setPatient}) => {
   return (
     <div className="md:w-1/2 lg:w-3/5 md:h-screen md:overflow-y-scroll">
       {/* If patients not empty */}
@@ -10,7 +10,8 @@ const PatientList = ({patients}) => {
           Manage your {''}
             <span className="text-blue-600 font-bold">Patients and Appointments</span>
           </p>
-          {patients.map(patient => (<Patient patient={patient} key={patient.id}/>))}
+          {patients.map(patient => (
+          <Patient patient={patient} key={patient.id} setPatient={setPatient}/>))}
         </> :
         // If patients empty
         <>
